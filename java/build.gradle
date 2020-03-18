@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'io.tomoram.katas'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.0'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.6.0'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.6.0'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.+'
+}
+
+test {
+    systemProperties = [
+            'junit.platform.output.capture.stdout': true
+    ]
+}
