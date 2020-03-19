@@ -1,8 +1,7 @@
 import dependencies.Config;
 import dependencies.Emailer;
+import dependencies.Logger;
 import dependencies.Project;
-
-import java.util.logging.Logger;
 
 public class Pipeline {
     private final Config config;
@@ -24,7 +23,7 @@ public class Pipeline {
                 log.info("Tests passed");
                 testsPassed = true;
             } else {
-                log.severe("Tests failed");
+                log.error("Tests failed");
                 testsPassed = false;
             }
         } else {
@@ -37,7 +36,7 @@ public class Pipeline {
                 log.info("Deployment successful");
                 deploySuccessful = true;
             } else {
-                log.severe("Deployment failed");
+                log.error("Deployment failed");
                 deploySuccessful = false;
             }
         } else {

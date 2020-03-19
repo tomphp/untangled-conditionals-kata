@@ -1,34 +1,26 @@
 import dependencies.Config;
 import dependencies.Emailer;
 import dependencies.Project;
-import dependencies.TestStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
 
-import java.util.logging.Logger;
+import java.util.Arrays;
 
 import static dependencies.TestStatus.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.verify;
 
 class PipelineTest {
-    @Mock
-    private Config config;
+    private Config config = mock(Config.class);
+    private CapturingLogger log = new CapturingLogger();
+    private Emailer emailer = mock(Emailer.class);
 
-    @Mock
-    private Logger log;
-
-    @Mock
-    private Emailer emailer;
+    private Pipeline pipeline;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
+        pipeline = new Pipeline(config, emailer, log);
     }
-
-    @InjectMocks
-    private Pipeline pipeline;
 
     @Test
     void project_with_tests_that_deploys_successfully_with_email_notification() {
@@ -41,10 +33,11 @@ class PipelineTest {
 
         pipeline.run(project);
 
-        InOrder orderedLog = inOrder(log);
-        orderedLog.verify(log).info("Tests passed");
-        orderedLog.verify(log).info("Deployment successful");
-        orderedLog.verify(log).info("Sending email");
+        assertEquals(Arrays.asList(
+                "INFO: Tests passed",
+                "INFO: Deployment successful",
+                "INFO: Sending email"
+        ), log.getLoggedLines());
 
         verify(emailer).send("Deployment completed successfully");
     }
@@ -60,10 +53,11 @@ class PipelineTest {
 
         pipeline.run(project);
 
-        InOrder orderedLog = inOrder(log);
-        orderedLog.verify(log).info("Tests passed");
-        orderedLog.verify(log).info("Deployment successful");
-        orderedLog.verify(log).info("Email disabled");
+        assertEquals(Arrays.asList(
+                "INFO: Tests passed",
+                "INFO: Deployment successful",
+                "INFO: Email disabled"
+        ), log.getLoggedLines());
 
         verify(emailer, never()).send(any());
     }
@@ -79,10 +73,11 @@ class PipelineTest {
 
         pipeline.run(project);
 
-        InOrder orderedLog = inOrder(log);
-        orderedLog.verify(log).info("No tests");
-        orderedLog.verify(log).info("Deployment successful");
-        orderedLog.verify(log).info("Sending email");
+        assertEquals(Arrays.asList(
+                "INFO: No tests",
+                "INFO: Deployment successful",
+                "INFO: Sending email"
+        ), log.getLoggedLines());
 
         verify(emailer).send("Deployment completed successfully");
     }
@@ -98,10 +93,11 @@ class PipelineTest {
 
         pipeline.run(project);
 
-        InOrder orderedLog = inOrder(log);
-        orderedLog.verify(log).info("No tests");
-        orderedLog.verify(log).info("Deployment successful");
-        orderedLog.verify(log).info("Email disabled");
+        assertEquals(Arrays.asList(
+                "INFO: No tests",
+                "INFO: Deployment successful",
+                "INFO: Email disabled"
+        ), log.getLoggedLines());
 
         verify(emailer, never()).send(any());
     }
@@ -116,9 +112,10 @@ class PipelineTest {
 
         pipeline.run(project);
 
-        InOrder orderedLog = inOrder(log);
-        orderedLog.verify(log).severe("Tests failed");
-        orderedLog.verify(log).info("Sending email");
+        assertEquals(Arrays.asList(
+                "ERROR: Tests failed",
+                "INFO: Sending email"
+        ), log.getLoggedLines());
 
         verify(emailer).send("Tests failed");
     }
@@ -133,9 +130,10 @@ class PipelineTest {
 
         pipeline.run(project);
 
-        InOrder orderedLog = inOrder(log);
-        orderedLog.verify(log).severe("Tests failed");
-        orderedLog.verify(log).info("Email disabled");
+        assertEquals(Arrays.asList(
+                "ERROR: Tests failed",
+                "INFO: Email disabled"
+        ), log.getLoggedLines());
 
         verify(emailer, never()).send(any());
     }
@@ -151,10 +149,11 @@ class PipelineTest {
 
         pipeline.run(project);
 
-        InOrder orderedLog = inOrder(log);
-        orderedLog.verify(log).info("Tests passed");
-        orderedLog.verify(log).severe("Deployment failed");
-        orderedLog.verify(log).info("Sending email");
+        assertEquals(Arrays.asList(
+                "INFO: Tests passed",
+                "ERROR: Deployment failed",
+                "INFO: Sending email"
+        ), log.getLoggedLines());
 
         verify(emailer).send("Deployment failed");
     }
@@ -170,10 +169,11 @@ class PipelineTest {
 
         pipeline.run(project);
 
-        InOrder orderedLog = inOrder(log);
-        orderedLog.verify(log).info("Tests passed");
-        orderedLog.verify(log).severe("Deployment failed");
-        orderedLog.verify(log).info("Email disabled");
+        assertEquals(Arrays.asList(
+                "INFO: Tests passed",
+                "ERROR: Deployment failed",
+                "INFO: Email disabled"
+        ), log.getLoggedLines());
 
         verify(emailer, never()).send(any());
     }
@@ -189,10 +189,11 @@ class PipelineTest {
 
         pipeline.run(project);
 
-        InOrder orderedLog = inOrder(log);
-        orderedLog.verify(log).info("No tests");
-        orderedLog.verify(log).severe("Deployment failed");
-        orderedLog.verify(log).info("Sending email");
+        assertEquals(Arrays.asList(
+                "INFO: No tests",
+                "ERROR: Deployment failed",
+                "INFO: Sending email"
+        ), log.getLoggedLines());
 
         verify(emailer).send("Deployment failed");
     }
@@ -208,10 +209,11 @@ class PipelineTest {
 
         pipeline.run(project);
 
-        InOrder orderedLog = inOrder(log);
-        orderedLog.verify(log).info("No tests");
-        orderedLog.verify(log).severe("Deployment failed");
-        orderedLog.verify(log).info("Email disabled");
+        assertEquals(Arrays.asList(
+                "INFO: No tests",
+                "ERROR: Deployment failed",
+                "INFO: Email disabled"
+        ), log.getLoggedLines());
 
         verify(emailer, never()).send(any());
     }
