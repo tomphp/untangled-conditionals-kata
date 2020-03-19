@@ -23,7 +23,7 @@ public class Project {
         return testStatus == PASSING_TESTS ? "success" : "failure";
     }
 
-    public String build() {
+    public String deploy() {
         return buildsSuccessfully ? "success" : "failure";
     }
 
