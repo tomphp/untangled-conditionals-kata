@@ -15,7 +15,8 @@ Remember, keep the tests passing while you refactor!
 
 ## Approach
 
-Below you can find a video demonstrating my approach to this kata.
-I recommend you try the kata yourself first, and then watch the video afterwards.
+Below you can find some resources demonstrating the approach that this kata was designed to teach.
+However, I recommend you try the kata yourself first, and then review the resources.
 
-[![Untangled Conditionals Kata](https://img.youtube.com/vi/NWgY-0Qu4S4/0.jpg)](http://www.youtube.com/watch?v=NWgY-0Qu4S4)
+* Blog Post: [Refactoring — Untangling Conditionals](https://cloudnative.ly/refactoring-untangling-conditionals-cc5693b8ec3c).
+* Video: [![Untangled Conditionals Kata](https://img.youtube.com/vi/NWgY-0Qu4S4/0.jpg)](http://www.youtube.com/watch?v=NWgY-0Qu4S4)
