@@ -1,5 +1,7 @@
 # Untangled Conditionals Kata
 
+[![Build Status](https://travis-ci.org/tomphp/untangled-conditionals-kata.svg?branch=master)](https://travis-ci.org/tomphp/untangled-conditionals-kata)
+
 This repository contains a simple coding kata.
 
 Category: **refactoring**<br>
