@@ -1,0 +1,21 @@
+{
+    "type": "project",
+    "authors": [
+        {
+            "name": "Tom Oram",
+            "email": "me@tomoram.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "UntangledConditionals\\": "src/"
+        }
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "scripts": {
+        "test": "phpunit --testdox tests"
+    }
+}

@@ -1,4 +1,4 @@
-matrix:
+jobs:
   include:
     - dist: xenial
       language: java
@@ -10,3 +10,13 @@ matrix:
         - cd java
       script:
         - ./gradlew test
+    - dist: xenial
+      language: php
+      php:
+        - '7.3'
+        - '7.4'
+      before_script:
+        - cd php
+      script:
+        - composer install --dev
+        - composer test
