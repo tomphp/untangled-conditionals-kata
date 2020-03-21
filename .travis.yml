@@ -1,22 +1,34 @@
+os: linux
+language: java
+dist: xenial
+
 jobs:
   include:
-    - dist: xenial
+    - &java
+      stage: test
+      dist: xenial
       language: java
-      jdk:
-        - openjdk8
-        - openjdk10
-        - openjdk11
+      jdk: openjdk8
       before_script:
         - cd java
       script:
         - ./gradlew test
-    - dist: xenial
+
+    - <<: *java
+      jdk: openjdk10
+
+    - <<: *java
+      jdk: openjdk11
+
+    - &php
+      dist: xenial
       language: php
-      php:
-        - '7.3'
-        - '7.4'
+      php: '7.3'
       before_script:
         - cd php
       script:
         - composer install --dev
         - composer test
+
+    - <<: *php
+      php: '7.4'
