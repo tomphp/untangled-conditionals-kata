@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace UntangledConditionals;
 
@@ -7,9 +6,7 @@ use PHPUnit\Framework\TestCase;
 use UntangledConditionals\Dependencies\CapturingLogger;
 use UntangledConditionals\Dependencies\Config;
 use UntangledConditionals\Dependencies\Emailer;
-use UntangledConditionals\Dependencies\Logger;
 use UntangledConditionals\Dependencies\Project;
-use UntangledConditionals\Dependencies\ProjectBuilder;
 use UntangledConditionals\Dependencies\TestStatus;
 
 final class PipelineTest extends TestCase
