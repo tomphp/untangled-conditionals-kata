@@ -19,3 +19,7 @@ The expected results are
 ===============================================================================
 All tests passed (10 assertions in 2 test cases)
 ```
+
+## Doing the Kata
+The goal is to refactor the tangled conditional logic in the `run` method in the
+`Pipeline.cpp` file.
