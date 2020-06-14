@@ -25,13 +25,13 @@ func (c StubConfig) sendEmailSummary() bool {
 
 var doSendEmail = StubConfig{true}
 var noEmail = StubConfig{false}
-var deploySuccess = true
+var buildSuccess = true
 var buildFailure = false
 
 func TestProject_with_tests_that_deploys_successfully_with_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(doSendEmail)
 
-	var project = Project{deploySuccess, PASSING_TESTS}
+	var project = Project{buildSuccess, PASSING_TESTS}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -44,7 +44,7 @@ func TestProject_with_tests_that_deploys_successfully_with_email_notification(t 
 func TestProject_with_tests_that_deploys_successfully_without_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(noEmail)
 
-	var project = Project{deploySuccess, PASSING_TESTS}
+	var project = Project{buildSuccess, PASSING_TESTS}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -57,7 +57,7 @@ func TestProject_with_tests_that_deploys_successfully_without_email_notification
 func TestProject_without_tests_that_deploys_successfully_with_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(doSendEmail)
 
-	var project = Project{deploySuccess, NO_TESTS}
+	var project = Project{buildSuccess, NO_TESTS}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -70,7 +70,7 @@ func TestProject_without_tests_that_deploys_successfully_with_email_notification
 func TestProjectWithoutTestsThatDeploysSuccessfullyWithoutEmailNotification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(noEmail)
 
-	var project = Project{deploySuccess, NO_TESTS}
+	var project = Project{buildSuccess, NO_TESTS}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -83,7 +83,7 @@ func TestProjectWithoutTestsThatDeploysSuccessfullyWithoutEmailNotification(t *t
 func TestProject_without_tests_that_fail_with_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(doSendEmail)
 
-	var project = Project{deploySuccess, FAILING_TESTS}
+	var project = Project{buildSuccess, FAILING_TESTS}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -95,7 +95,7 @@ func TestProject_without_tests_that_fail_with_email_notification(t *testing.T) {
 func TestProject_without_tests_that_fail_withou_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(noEmail)
 
-	var project = Project{deploySuccess, FAILING_TESTS}
+	var project = Project{buildSuccess, FAILING_TESTS}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
