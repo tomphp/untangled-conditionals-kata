@@ -6,9 +6,7 @@ type Pipeline struct {
     emailer Emailer
     log Logger
 }
-func (p *Pipeline) test(e Emailer) {
 
-}
 func (p *Pipeline) run(project Project) {
     var testsPassed = false
     var  deploySuccessful = false
