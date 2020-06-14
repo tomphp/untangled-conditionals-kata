@@ -1,48 +1,50 @@
-# os: linux
-# language: java
-# dist: xenial
-# 
-# jobs:
-#   include:
-#     - &java
-#       stage: test
-#       dist: xenial
-#       language: java
-#       jdk: openjdk8
-#       before_script:
-#         - cd java
-#       script:
-#         - ./gradlew test
-# 
-#     - <<: *java
-#       jdk: openjdk10
-# 
-#     - <<: *java
-#       jdk: openjdk11
-# 
-#     - &php
-#       dist: xenial
-#       language: php
-#       php: '7.3'
-#       before_script:
-#         - cd php
-#       script:
-#         - composer install --dev
-#         - composer test
-# 
-#     - <<: *php
-#       php: '7.4'
+os: linux
+language: java
+dist: xenial
 
-language: go
-go: 
-# - 1.3.3
-# - 1.4.2
- - 1.5.1
-   # - release
-   # - tip
+jobs:
+  include:
+    - &java
+      stage: test
+      dist: xenial
+      language: java
+      jdk: openjdk8
+      before_script:
+        - cd java
+      script:
+        - ./gradlew test
 
-before_install:
-  - go get github.com/stretchr/testify 
+    - <<: *java
+      jdk: openjdk10
 
-script:
-  - go test -v ./...
+    - <<: *java
+      jdk: openjdk11
+
+    - &php
+      dist: xenial
+      language: php
+      php: '7.3'
+      before_script:
+        - cd php
+      script:
+        - composer install --dev
+        - composer test
+
+    - <<: *php
+      php: '7.4'
+
+    - &go
+      dist: xenial
+      language: go
+      go: 
+        - 1.3.3
+        - 1.4.2
+        - 1.5.1
+          # - release
+          # - tip
+
+      before_install:
+        - go get github.com/stretchr/testify 
+      
+      script:
+        - go test -v ./...
