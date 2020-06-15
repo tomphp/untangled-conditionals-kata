@@ -67,7 +67,7 @@ func TestProject_without_tests_that_deploys_successfully_with_email_notification
 	assert.Equal(t, "Deployment completed successfully", emailer.email)
 }
 
-func TestProjectWithoutTestsThatDeploysSuccessfullyWithoutEmailNotification(t *testing.T) {
+func TestProject_without_tests_that_deploys_successfully_without_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(noEmail)
 
 	var project = Project{buildSuccess, NO_TESTS}
