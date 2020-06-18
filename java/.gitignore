@@ -1,2 +1,17 @@
+# Gradle
 build/
 .gradle
+
+# Idea
+.idea
+*.iml
+
+# Maven
+target
+
+# Eclipse
+.project
+.classpath
+.settings
+.pmd
+bin/
