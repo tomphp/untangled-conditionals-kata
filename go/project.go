@@ -10,11 +10,11 @@ func (p *Project) SetTestStatus(testStatus TestStatus) {
 }
 
 func (p Project) hasTests() bool {
-	return p.testStatus != NO_TESTS
+	return p.testStatus != NoTests
 }
 
 func (p Project) runTests() string {
-	if p.testStatus == PASSING_TESTS {
+	if p.testStatus == PassingTests {
 		return "success"
 	}
 	return "failure"

@@ -32,7 +32,7 @@ var buildFailure = false
 func TestProject_with_tests_that_deploys_successfully_with_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(doSendEmail)
 
-	var project = Project{buildSuccess, PASSING_TESTS}
+	var project = Project{buildSuccess, PassingTests}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -45,7 +45,7 @@ func TestProject_with_tests_that_deploys_successfully_with_email_notification(t 
 func TestProject_with_tests_that_deploys_successfully_without_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(noEmail)
 
-	var project = Project{buildSuccess, PASSING_TESTS}
+	var project = Project{buildSuccess, PassingTests}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -58,7 +58,7 @@ func TestProject_with_tests_that_deploys_successfully_without_email_notification
 func TestProject_without_tests_that_deploys_successfully_with_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(doSendEmail)
 
-	var project = Project{buildSuccess, NO_TESTS}
+	var project = Project{buildSuccess, NoTests}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -71,7 +71,7 @@ func TestProject_without_tests_that_deploys_successfully_with_email_notification
 func TestProject_without_tests_that_deploys_successfully_without_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(noEmail)
 
-	var project = Project{buildSuccess, NO_TESTS}
+	var project = Project{buildSuccess, NoTests}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -84,7 +84,7 @@ func TestProject_without_tests_that_deploys_successfully_without_email_notificat
 func TestProject_without_tests_that_fail_with_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(doSendEmail)
 
-	var project = Project{buildSuccess, FAILING_TESTS}
+	var project = Project{buildSuccess, FailingTests}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -96,7 +96,7 @@ func TestProject_without_tests_that_fail_with_email_notification(t *testing.T) {
 func TestProject_without_tests_that_fail_withou_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(noEmail)
 
-	var project = Project{buildSuccess, FAILING_TESTS}
+	var project = Project{buildSuccess, FailingTests}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -108,7 +108,7 @@ func TestProject_without_tests_that_fail_withou_email_notification(t *testing.T)
 func TestProject_with_tests_that_fails_build_with_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(doSendEmail)
 
-	var project = Project{buildFailure, PASSING_TESTS}
+	var project = Project{buildFailure, PassingTests}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -121,7 +121,7 @@ func TestProject_with_tests_that_fails_build_with_email_notification(t *testing.
 func TestProject_with_tests_that_fails_build_without_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(noEmail)
 
-	var project = Project{buildFailure, PASSING_TESTS}
+	var project = Project{buildFailure, PassingTests}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -134,7 +134,7 @@ func TestProject_with_tests_that_fails_build_without_email_notification(t *testi
 func TestProject_withou_tests_that_fails_build_with_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(doSendEmail)
 
-	var project = Project{buildFailure, NO_TESTS}
+	var project = Project{buildFailure, NoTests}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
@@ -147,7 +147,7 @@ func TestProject_withou_tests_that_fails_build_with_email_notification(t *testin
 func TestProject_without_tests_that_fails_build_without_email_notification(t *testing.T) {
 	logger, emailer, pipeline := newPipelineAndSpies(noEmail)
 
-	var project = Project{buildFailure, NO_TESTS}
+	var project = Project{buildFailure, NoTests}
 	pipeline.run(project)
 
 	assert.Equal(t, []string{
