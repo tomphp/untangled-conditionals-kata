@@ -1,6 +1,7 @@
 package dependencies;
 
-import static dependencies.TestStatus.*;
+import static dependencies.TestStatus.NO_TESTS;
+import static dependencies.TestStatus.PASSING_TESTS;
 
 public class Project {
     private final boolean buildsSuccessfully;
