@@ -18,3 +18,7 @@ add_executable(pipeline
         test/main.cpp
         )
 target_include_directories(pipeline PRIVATE include)
+
+include(CTest)
+
+add_test (pipeline pipeline )
