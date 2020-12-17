@@ -31,13 +31,11 @@ final class Project
         return $this->testStatus != TestStatus::noTests();
     }
 
-    public function runTests(): string
-    {
-        return $this->testStatus == TestStatus::passingTests() ? 'success' : 'failed';
+    public function runTestsResult() :bool {
+        return $this->testStatus == TestStatus::passingTests();
     }
 
-    public function deploy(): string
-    {
-        return $this->deploysSuccessfully ? 'success' : 'failed';
+    public function deploysSuccessfully() :bool {
+        return $this->deploysSuccessfully;
     }
 }

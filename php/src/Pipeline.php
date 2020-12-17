@@ -34,7 +34,7 @@ final class Pipeline
     public function run(Project $project): void
     {
         if ($project->hasTests()) {
-            if ($project->runTests() === 'success') {
+            if ($project->runTestsResult()) {
                 $this->log->info('Tests passed');
                 $testsPassed = true;
             } else {
@@ -47,7 +47,7 @@ final class Pipeline
         }
 
         if ($testsPassed) {
-            if ($project->deploy() === 'success') {
+            if ($project->deploysSuccessfully()) {
                 $this->log->info('Deployment successful');
                 $deploySuccessful = true;
             } else {
