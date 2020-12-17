@@ -44,35 +44,29 @@ final class Pipeline
         return true;
     }
 
+    private function projectDeployedSuccessfully(Project $project) :bool { 
+        if(!$project->deploysSuccessfully()) {
+            $this->log->error('Deployment failed');
+            return false;
+        }
+        $this->log->info('Deployment successful');
+        return true;
+    }
+
     public function run(Project $project): void
     {
         $testsPassed = $this->projectTestPass($project);
+        $deploySuccessful = $testsPassed && $this->projectDeployedSuccessfully($project);
 
-        if ($testsPassed) {
-            if ($project->deploysSuccessfully()) {
-                $this->log->info('Deployment successful');
-                $deploySuccessful = true;
-            } else {
-                $this->log->error('Deployment failed');
-                $deploySuccessful = false;
-            }
-        } else {
-            $deploySuccessful = false;
-        }
-
-        if ($this->config->sendEmailSummary()) {
-            $this->log->info('Sending email');
-            if ($testsPassed) {
-                if ($deploySuccessful) {
-                    $this->emailer->send('Deployment completed successfully');
-                } else {
-                    $this->emailer->send('Deployment failed');
-                }
-            } else {
-                $this->emailer->send('Tests failed');
-            }
-        } else {
+        if (!$this->config->sendEmailSummary()) {
             $this->log->info('Email disabled');
+            return;
         }
+        $this->log->info('Sending email');
+        if (!$testsPassed) {
+            $this->emailer->send('Tests failed');
+            return;
+        }        
+        $this->emailer->send($deploySuccessful? 'Deployment completed successfully': 'Deployment failed');
     }
 }
