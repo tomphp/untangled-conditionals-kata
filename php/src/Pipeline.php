@@ -31,20 +31,22 @@ final class Pipeline
         $this->log = $log;
     }
 
+    private function projectTestPass(Project $project) :bool {
+        if (!$project->hasTests()) {
+            $this->log->info('No tests');
+            return true;
+        }
+        if (!$project->runTestsResult()) {
+            $this->log->error('Tests failed');
+            return false;
+        }
+        $this->log->info('Tests passed');
+        return true;
+    }
+
     public function run(Project $project): void
     {
-        if ($project->hasTests()) {
-            if ($project->runTestsResult()) {
-                $this->log->info('Tests passed');
-                $testsPassed = true;
-            } else {
-                $this->log->error('Tests failed');
-                $testsPassed = false;
-            }
-        } else {
-            $this->log->info('No tests');
-            $testsPassed = true;
-        }
+        $testsPassed = $this->projectTestPass($project);
 
         if ($testsPassed) {
             if ($project->deploysSuccessfully()) {
