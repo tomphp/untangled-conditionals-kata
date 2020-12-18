@@ -53,20 +53,25 @@ final class Pipeline
         return true;
     }
 
-    public function run(Project $project): void
-    {
-        $testsPassed = $this->projectTestPass($project);
-        $deploySuccessful = $testsPassed && $this->projectDeployedSuccessfully($project);
-
+    private function sendEmailNotification(string $message) :void {
         if (!$this->config->sendEmailSummary()) {
             $this->log->info('Email disabled');
             return;
         }
         $this->log->info('Sending email');
-        if (!$testsPassed) {
-            $this->emailer->send('Tests failed');
+        $this->emailer->send($message);
+    }
+
+    public function run(Project $project): void
+    {
+        if(!$this->projectTestPass($project)) {
+            $this->sendEmailNotification('Tests failed');
             return;
-        }        
-        $this->emailer->send($deploySuccessful? 'Deployment completed successfully': 'Deployment failed');
+        }
+        if(!$this->projectDeployedSuccessfully($project)) {
+            $this->sendEmailNotification('Deployment failed');
+            return;
+        }
+        $this->sendEmailNotification('Deployment completed successfully');
     }
 }
