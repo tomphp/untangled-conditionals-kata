@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UntangledConditionals", "UntangledConditionals\UntangledConditionals.csproj", "{0AF5E38A-1C4B-4357-8D63-430A4862BF32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UntangledConditionalsTest", "UntangledConditionalsTest\UntangledConditionalsTest.csproj", "{37839DFE-A59F-4A37-9BAE-81D5B9DC3AA5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AF5E38A-1C4B-4357-8D63-430A4862BF32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF5E38A-1C4B-4357-8D63-430A4862BF32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF5E38A-1C4B-4357-8D63-430A4862BF32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF5E38A-1C4B-4357-8D63-430A4862BF32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F8F20A4-B14D-4D23-B450-A9827ABBEA0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F8F20A4-B14D-4D23-B450-A9827ABBEA0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F8F20A4-B14D-4D23-B450-A9827ABBEA0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F8F20A4-B14D-4D23-B450-A9827ABBEA0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37839DFE-A59F-4A37-9BAE-81D5B9DC3AA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37839DFE-A59F-4A37-9BAE-81D5B9DC3AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37839DFE-A59F-4A37-9BAE-81D5B9DC3AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37839DFE-A59F-4A37-9BAE-81D5B9DC3AA5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
