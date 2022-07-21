@@ -1,7 +1,7 @@
-from python.capturing_logger import CapturingLogger
-from python.pipeline import Pipeline
-from python.project import Project
-from python.test_status import PASSING_TESTS, NO_TESTS, FAILING_TESTS
+from capturing_logger import CapturingLogger
+from pipeline import Pipeline
+from project import Project
+from status import PASSING_TESTS, NO_TESTS, FAILING_TESTS
 
 
 class ConfigForTest:

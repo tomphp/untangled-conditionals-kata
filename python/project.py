@@ -1,9 +1,4 @@
-# package dependencies;
-#
-# import static dependencies.TestStatus.NO_TESTS;
-# import static dependencies.TestStatus.PASSING_TESTS;
-#
-from python.test_status import NO_TESTS, PASSING_TESTS
+from status import NO_TESTS, PASSING_TESTS
 
 
 class Project:
